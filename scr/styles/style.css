@@ -1,0 +1,366 @@
+/* =========================================================
+   AGRONOTES - DARK GLASSMORPHISM COM EDITOR RICO E DESTAQUES
+   ========================================================= */
+
+   :root {
+    --glass-bg: rgba(15, 23, 42, 0.45);          
+    --glass-editor: rgba(30, 41, 59, 0.50);      
+    --glass-border: rgba(255, 255, 255, 0.18);   
+    --accent-orange: #fb923c;                    
+    --accent-green: #34d399;                     
+    --text-light: #ffffff;                       
+    --text-muted: #cbd5e1;                       
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: #0f172a;
+}
+
+#video-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.app-card {
+    width: 100%;
+    max-width: 850px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header e Logos */
+.header {
+    position: relative;
+    padding: 30px 35px 20px 35px;
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+}
+
+.header-logo {
+    position: absolute;
+    top: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.08);
+    border-color: var(--accent-orange);
+}
+
+.logo-left { left: 25px; }
+.logo-right { right: 25px; }
+.header-center { margin-bottom: 20px; }
+
+.badge {
+    color: var(--accent-orange);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+h1 {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 24px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.materia-selector label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.materia-selector select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-light);
+    font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+/* Área do Editor */
+.editor-area {
+    padding: 25px 35px 30px 35px;
+}
+
+/* BARRA DE FERRAMENTAS DE CORES */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--glass-border);
+}
+
+.toolbar-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.btn-color {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-color:hover {
+    transform: scale(1.2);
+}
+
+.highlight-yellow { background-color: #fef08a; }
+.highlight-green  { background-color: #86efac; }
+.highlight-blue   { background-color: #93c5fd; }
+.highlight-pink   { background-color: #fbcfe8; }
+
+.btn-remove-highlight {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: background 0.2s ease;
+}
+
+.btn-remove-highlight:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ÁREA DE DIGITAÇÃO DIV (contenteditable) */
+#anotacoes {
+    width: 100%;
+    height: 350px;
+    padding: 20px;
+    background: var(--glass-editor);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-light);
+    box-sizing: border-box;
+    outline: none;
+    overflow-y: auto; /* Adiciona barra de rolagem se o texto for grande */
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#anotacoes:focus {
+    background: rgba(30, 41, 59, 0.75);
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
+}
+
+/* Placeholder para a Div Editável */
+#anotacoes:empty:before {
+    content: attr(data-placeholder);
+    color: var(--text-muted);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Cor do texto dentro dos destaques para manter bom contraste */
+#anotacoes mark {
+    color: #0f172a;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+/* Rodapé e Ações */
+.editor-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.stats {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.action-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.status {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.status.salvando {
+    color: var(--accent-orange);
+}
+
+.btn-secondary {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #fca5a5;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(239, 68, 68, 0.4);
+    border-color: #f87171;
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .header-logo { width: 45px; height: 45px; top: 15px; }
+    .logo-left { left: 15px; }
+    .logo-right { right: 15px; }
+    h1 { font-size: 20px; }
+    .action-area { width: 100%; justify-content: space-between; }
+}
+
+/* estilo login*/
+
+/* =========================================================
+   ESTILOS DA TELA DE LOGIN E BOTÃO DE SAIR
+   ========================================================= */
+
+   .login-card {
+    max-width: 450px !important; /* Caixa mais estreita e elegante para o login */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-light);
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--accent-orange);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 12px rgba(251, 146, 60, 0.2);
+}
+
+.btn-login {
+    background: linear-gradient(135deg, var(--accent-orange) 0%, #ea580c 100%);
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+/* Botão Salvar e Sair */
+.btn-logout {
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.5);
+    color: #a7f3d0;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(16, 185, 129, 0.4);
+    border-color: var(--accent-green);
+    color: #ffffff;
+}

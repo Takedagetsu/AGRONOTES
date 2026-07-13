@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNotes | Caderno de Estudos Agronômicos</title>
+    <link rel="stylesheet" href="./scr/styles/style.css">
+    <link rel="stylesheet" href="./login.html">
+</head>
+<body>
+
+    <video autoplay loop muted playsinline id="video-bg">
+        <source src="./scr/midia/Ppt background environment _ Environmental gif_ Coding environment inspiration_ Technology and nature(MP4).mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
+    </video>
+
+    <div class="app-card">
+        <header class="header">
+            <img src="./scr/midia/logo1.png" alt="Logo Agronomia" class="header-logo logo-left">
+
+            <div class="header-center">
+                <span class="badge">🌱 AgroNotes</span>
+                <h1>Caderno de Estudos Agronômicos</h1>
+            </div>
+
+            <img src="./scr/midia/logo2.png" alt="Símbolo Agronomia" class="header-logo logo-right">
+
+            <div class="materia-selector">
+                <label for="materiaSelect">Selecione a Matéria:</label>
+                <select id="materiaSelect">
+                    <option value="solos">🌱 Manejo de Solos e Adubação</option>
+                    <option value="fitotecnia">🌽 Fitotecnia e Culturas</option>
+                    <option value="entomologia">🐛 Entomologia Agrícola</option>
+                    <option value="maquinario">🚜 Máquinas e Mecanização</option>
+                    <option value="geral">📝 Anotações Gerais de Campo</option>
+                </select>
+            </div>
+        </header>
+
+        <main class="editor-area">
+            <div class="toolbar">
+                <span class="toolbar-label">🖍️ Destacar:</span>
+                <button type="button" class="btn-color highlight-yellow" onclick="destacarTexto('#fef08a')" title="Amarelo"></button>
+                <button type="button" class="btn-color highlight-green" onclick="destacarTexto('#86efac')" title="Verde"></button>
+                <button type="button" class="btn-color highlight-blue" onclick="destacarTexto('#93c5fd')" title="Azul"></button>
+                <button type="button" class="btn-color highlight-pink" onclick="destacarTexto('#fbcfe8')" title="Rosa"></button>
+                <button type="button" class="btn-remove-highlight" onclick="removerDestaque()" title="Remover Destaque">🧹 Limpar Destaque</button>
+            </div>
+
+            <div id="anotacoes" contenteditable="true" data-placeholder="Digite suas observações de campo, fórmulas de adubação, dosagens ou resumos aqui..."></div>
+            
+            <div class="editor-footer">
+                <div class="stats">
+                    <span id="palavrasCount">0 palavras</span> • 
+                    <span id="caracteresCount">0 caracteres</span>
+                </div>
+                
+                <div class="action-area">
+                    <span id="status" class="status">Carregando...</span>
+                    <button id="btnLimpar" class="btn-secondary">🗑️ Limpar Matéria</button>
+                    
+                    <button id="btnSair" class="btn-logout">🔒 Salvar e Sair</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./scr/script/script.js"></script>
+</body>
+</html>

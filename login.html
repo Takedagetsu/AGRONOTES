@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNotes | Login de Acesso</title>
+    <link rel="stylesheet" href="./scr/styles/style.css">
+    
+</head>
+<body>
+
+    <video autoplay loop muted playsinline id="video-bg">
+        <source src="./scr/midia/Ppt background environment _ Environmental gif_ Coding environment inspiration_ Technology and nature(MP4).mp4" type="video/mp4">
+    </video>
+
+    <div class="app-card login-card">
+        <header class="header">
+            <div class="header-center">
+                <span class="badge">🌱 AgroNotes</span>
+                <h1>Acesso ao Caderno</h1>
+            </div>
+        </header>
+
+        <main class="editor-area">
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="usuario">Usuário / ID Agrônomo:</label>
+                    <input type="text" id="usuario" placeholder="Digite seu usuário..." required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha de Acesso:</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha..." required>
+                </div>
+
+                <button type="submit" class="btn-login">🔓 Entrar no Sistema</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        // =========================================================
+    // CONFIGURAÇÃO DAS SUAS CREDENCIAIS DE ACESSO
+    // =========================================================
+    const ID_CORRETO = "06869";      // <-- Mude para o seu Usuário/ID desejado
+    const SENHA_CORRETA = "Takedaa21*"; // <-- Mude para a sua Senha desejada
+
+    // Elementos da tela
+    const form = document.getElementById('loginForm');
+    const inputUsuario = document.getElementById('usuario');
+    const inputSenha = document.getElementById('senha');
+
+    // Se o usuário já estiver logado, redireciona direto para o painel principal
+    if (localStorage.getItem('agronotes_autenticado') === 'true') {
+        window.location.href = 'index.html';
+    }
+
+    // Lógica de validação do formulário
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const usuarioDigitado = inputUsuario.value.trim();
+        const senhaDigitada = inputSenha.value;
+
+        // Valida se o ID e a Senha correspondem às credenciais corretas
+        if (usuarioDigitado === ID_CORRETO && senhaDigitada === SENHA_CORRETA) {
+            // Marca a sessão como autenticada no navegador
+            localStorage.setItem('agronotes_autenticado', 'true');
+            
+            // Redireciona para o caderno principal
+            window.location.href = 'index.html';
+        } else {
+            // Exibe mensagem de erro se alguma credencial estiver errada
+            alert('❌ ID Agrônomo ou Senha incorretos. Tente novamente!');
+            inputSenha.value = ''; // Limpa o campo de senha para nova tentativa
+            inputSenha.focus();
+        }
+    });
+    </script>
+</body>
+</html>
