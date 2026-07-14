@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroNotes | Login de Acesso</title>
-    <link rel="stylesheet" href="./scr/styles/style.css">
     
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="stylesheet" href="./scr/styles/style.css">
 </head>
 <body>
 
     <video autoplay loop muted playsinline id="video-bg">
         <source src="./scr/midia/Ppt background environment _ Environmental gif_ Coding environment inspiration_ Technology and nature(MP4).mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
     </video>
 
     <div class="app-card login-card">
@@ -39,43 +42,34 @@
     </div>
 
     <script>
-        // =========================================================
-    // CONFIGURAÇÃO DAS SUAS CREDENCIAIS DE ACESSO
-    // =========================================================
-    const ID_CORRETO = "06869";      // <-- Mude para o seu Usuário/ID desejado
-    const SENHA_CORRETA = "Takedaa21*"; // <-- Mude para a sua Senha desejada
+        // CONFIGURAÇÕES DE CREDENCIAIS
+        const ID_CORRETO = "06869";      // <-- Altere aqui o seu ID Agrônomo
+        const SENHA_CORRETA = "Takedaa21*"; // <-- Altere aqui a sua Senha
 
-    // Elementos da tela
-    const form = document.getElementById('loginForm');
-    const inputUsuario = document.getElementById('usuario');
-    const inputSenha = document.getElementById('senha');
+        const form = document.getElementById('loginForm');
+        const inputUsuario = document.getElementById('usuario');
+        const inputSenha = document.getElementById('senha');
 
-    // Se o usuário já estiver logado, redireciona direto para o painel principal
-    if (localStorage.getItem('agronotes_autenticado') === 'true') {
-        window.location.href = 'index.html';
-    }
-
-    // Lógica de validação do formulário
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const usuarioDigitado = inputUsuario.value.trim();
-        const senhaDigitada = inputSenha.value;
-
-        // Valida se o ID e a Senha correspondem às credenciais corretas
-        if (usuarioDigitado === ID_CORRETO && senhaDigitada === SENHA_CORRETA) {
-            // Marca a sessão como autenticada no navegador
-            localStorage.setItem('agronotes_autenticado', 'true');
-            
-            // Redireciona para o caderno principal
+        // Se já estiver logado, vai direto para o caderno principal
+        if (localStorage.getItem('agronotes_autenticado') === 'true') {
             window.location.href = 'index.html';
-        } else {
-            // Exibe mensagem de erro se alguma credencial estiver errada
-            alert('❌ ID Agrônomo ou Senha incorretos. Tente novamente!');
-            inputSenha.value = ''; // Limpa o campo de senha para nova tentativa
-            inputSenha.focus();
         }
-    });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const usuarioDigitado = inputUsuario.value.trim();
+            const senhaDigitada = inputSenha.value;
+
+            if (usuarioDigitado === ID_CORRETO && senhaDigitada === SENHA_CORRETA) {
+                localStorage.setItem('agronotes_autenticado', 'true');
+                window.location.href = 'index.html';
+            } else {
+                alert('❌ ID Agrônomo ou Senha incorretos. Tente novamente!');
+                inputSenha.value = '';
+                inputSenha.focus();
+            }
+        });
     </script>
 </body>
 </html>
