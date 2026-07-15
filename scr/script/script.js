@@ -1,25 +1,28 @@
-// Importe as funções necessárias dos SDKs que você precisa
-import { initializeApp } from "firebase/app" ;   
-import { getAnalytics } from "firebase/analytics" ;   
-// TODO: Adicionar SDKs para produtos do Firebase que você deseja usar
-// https://firebase.google.com/docs/web/setup#available-libraries
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Configuração do Firebase do seu aplicativo web
-// Para o SDK JS do Firebase v7.20.0 e versões posteriores, measurementId é opcional.
-const firebaseConfig = { 
-  apiKey : "AIzaSyBuDX35KzF00HYhmHKHZJyjFOut1edzS7o" , 
-  authDomain : "agronote-a9a28.firebaseapp.com" , 
-  URL do banco de dados : " https://agronote-a9a28-default-rtdb.firebaseio.com " 
-  ID do projeto : "agronote-a9a28" , 
-  bucket de armazenamento : "agronote-a9a28.firebasestorage.app" , 
-  messagingSenderId : " 491935875027" 
-  appId : "1:491935875027:web:c6286e59d2e86554013926 " 
-  ID da medição : "G-49VGTPRYD3" 
-};
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBuDX35KzF00HYhmHKHZJyjFOut1edzS7o",
+    authDomain: "agronote-a9a28.firebaseapp.com",
+    databaseURL: "https://agronote-a9a28-default-rtdb.firebaseio.com",
+    projectId: "agronote-a9a28",
+    storageBucket: "agronote-a9a28.firebasestorage.app",
+    messagingSenderId: "491935875027",
+    appId: "1:491935875027:web:c6286e59d2e86554013926",
+    measurementId: "G-49VGTPRYD3"
+  };
 
-// Inicializar o Firebase
-const app = initializeApp ( firebaseConfig );
-const analytics = getAnalytics ( app );
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
 
 // Seleção dos elementos do HTML
 const editor = document.getElementById('anotacoes');
