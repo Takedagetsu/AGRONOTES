@@ -8,14 +8,13 @@
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyBuDX35KzF00HYhmHKHZJyjFOut1edzS7o",
-    authDomain: "agronote-a9a28.firebaseapp.com",
-    databaseURL: "https://agronote-a9a28-default-rtdb.firebaseio.com",
-    projectId: "agronote-a9a28",
-    storageBucket: "agronote-a9a28.firebasestorage.app",
-    messagingSenderId: "491935875027",
-    appId: "1:491935875027:web:c6286e59d2e86554013926",
-    measurementId: "G-49VGTPRYD3"
+    apiKey: "AIzaSyAhsOmcupXfBZoYclOl1gdGLW0PI-JBfp4",
+    authDomain: "agronotes-8b1bf.firebaseapp.com",
+    projectId: "agronotes-8b1bf",
+    storageBucket: "agronotes-8b1bf.firebasestorage.app",
+    messagingSenderId: "678118849161",
+    appId: "1:678118849161:web:caea28422fd43e3bb3a458",
+    measurementId: "G-5NFRZYHXMV"
   };
 
   // Initialize Firebase
